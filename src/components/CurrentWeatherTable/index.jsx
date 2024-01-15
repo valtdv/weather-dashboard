@@ -11,7 +11,6 @@ const CurrentWeatherTable = ({ location }) => {
 
   useEffect(() => {
     axios.get(baseUrl).then((response) => {
-      console.log(response.data)
       const data = response.data
 
       const newObj = {
