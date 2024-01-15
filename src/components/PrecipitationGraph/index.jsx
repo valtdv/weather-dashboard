@@ -50,7 +50,7 @@ const PrecipitationGraph = ({ location }) => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Area type='monotone' dataKey='precipitationProbability' fill='#9a8c98' stroke='#8884d8' />
+              <Area type='monotone' dataKey='precipitationProbability' fill='#9a8c98' stroke='#B28B84' />
               <Line type='monotone' dataKey='temperature' stroke='#74A4BC' />
             </ComposedChart>
           </ResponsiveContainer>

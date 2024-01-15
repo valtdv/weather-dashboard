@@ -65,16 +65,16 @@ const Dashboard = () => {
               </p>
             </Card>
             <Card>
+              <h2 className='dashboard__title'>Current weather</h2>
+              <CurrentWeatherTable location={location} />
+            </Card>
+            <Card>
               <h2 className='dashboard__title'>Air pollution in the last 3 months</h2>
               <AirPollutionGraph location={location} />
             </Card>
             <Card>
               <h2 className='dashboard__title'>Precipitation probability and temperature for the next 5 days</h2>
               <PrecipitationGraph location={location} />
-            </Card>
-            <Card>
-              <h2 className='dashboard__title'>Current weather</h2>
-              <CurrentWeatherTable location={location} />
             </Card>
           </div>
         </div>

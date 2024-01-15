@@ -1,0 +1,9 @@
+.air-pollution-graph {
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.air-pollution-graph__container {
+  width: 2000px;
+  height: 300px;
+}
