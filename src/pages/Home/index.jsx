@@ -16,10 +16,12 @@ const Home = () => {
     }
   }
 
+  // Redirect to dashboard once permission is granted
   const goToDashboard = () => {
     navigate('/dashboard')
   }
 
+  // Show error message on title in case permission isn't granted
   const showError = (error) => {
     switch (error.code) {
       case error.PERMISSION_DENIED:
@@ -38,6 +40,7 @@ const Home = () => {
   }
 
   useEffect(() => {
+    // Ask user for location once component is mount
     getLocation()
   }, [])
 
@@ -46,7 +49,10 @@ const Home = () => {
       <Card>
         <div className='home__wrapper'>
           <h1 className='home__title'>{title}</h1>
-          <p className='home__text'>Please allows us to access your location so we can redirect you to the dashboard.</p>
+          <p className='home__text'>
+            Please allows us to access your location (and remember the decision on your browser to avoid errors) so we can redirect you to
+            the dashboard.
+          </p>
           <img className='home__image' src={Weather} alt='Image of a woman showing some climate information in a dashboard' />
         </div>
       </Card>
