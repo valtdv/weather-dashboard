@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import useAxios from '../../hooks/useAxios'
 import PropTypes from 'prop-types'
 import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-import axios from 'axios'
 import './AirPollutionGraph.css'
 
 const AirPollutionGraph = ({ location }) => {
@@ -21,6 +21,13 @@ const AirPollutionGraph = ({ location }) => {
   const [airPollutionRoughData, setAirPollutionRoughData] = useState()
   const [airPollutionData, setAirPollutionData] = useState()
 
+  const { data, loading, error } = useAxios(baseUrl)
+
+  //If an error has occurred the component retorns an error message
+  if (error) {
+    return <p>There has been an error fetching the Open Weather API</p>
+  }
+
   //Given the large amount of data the user has the posibility of filtering air pollution by hour
   const getFilteredData = (time) => {
     const newObj = airPollutionRoughData.filter((el) => el.dateWithHour.includes(time))
@@ -33,9 +40,9 @@ const AirPollutionGraph = ({ location }) => {
     getFilteredData(e.target.value)
   }
 
+  //Once the response has stopped loading data is processed and set
   useEffect(() => {
-    axios.get(baseUrl).then((response) => {
-      const data = response.data
+    if (!loading) {
       const list = data.list
 
       let newObj = list.map((el) => {
@@ -47,8 +54,8 @@ const AirPollutionGraph = ({ location }) => {
       })
 
       setAirPollutionRoughData(newObj)
-    })
-  }, [])
+    }
+  }, [loading])
 
   //Once the rough data is obtained the final data is filtered initially by noon
   useEffect(() => {
@@ -59,62 +66,68 @@ const AirPollutionGraph = ({ location }) => {
 
   return (
     <>
-      <div className='air-pollution__form'>
-        <label htmlFor='hour'>Filter data by hour: </label>
-        <select className='air-pollution__form-select' name='hour' id='hour' defaultValue='12:00:00 PM' onChange={handleChange}>
-          <option value='12:00:00 AM'>00:00:00</option>
-          <option value='1:00:00 AM'>01:00:00</option>
-          <option value='2:00:00 AM'>02:00:00</option>
-          <option value='3:00:00 AM'>03:00:00</option>
-          <option value='4:00:00 AM'>04:00:00</option>
-          <option value='5:00:00 AM'>05:00:00</option>
-          <option value='6:00:00 AM'>06:00:00</option>
-          <option value='7:00:00 AM'>07:00:00</option>
-          <option value='8:00:00 AM'>08:00:00</option>
-          <option value='9:00:00 AM'>09:00:00</option>
-          <option value='10:00:00 AM'>10:00:00</option>
-          <option value='11:00:00 AM'>11:00:00</option>
-          <option value='12:00:00 PM'>12:00:00</option>
-          <option value='1:00:00 PM'>13:00:00</option>
-          <option value='2:00:00 PM'>14:00:00</option>
-          <option value='3:00:00 PM'>15:00:00</option>
-          <option value='4:00:00 PM'>16:00:00</option>
-          <option value='5:00:00 PM'>17:00:00</option>
-          <option value='6:00:00 PM'>18:00:00</option>
-          <option value='7:00:00 PM'>19:00:00</option>
-          <option value='8:00:00 PM'>20:00:00</option>
-          <option value='9:00:00 PM'>21:00:00</option>
-          <option value='10:00:00 PM'>22:00:00</option>
-          <option value='11:00:00 PM'>23:00:00</option>
-        </select>
-      </div>
-      <div className='air-pollution__graph'>
-        <div className='air-pollution__graph__container'>
-          <ResponsiveContainer width='100%' height='100%'>
-            <ComposedChart
-              width={500}
-              height={400}
-              data={airPollutionData}
-              margin={{
-                top: 8,
-                right: 8,
-                bottom: 8,
-                left: 8
-              }}
-            >
-              <CartesianGrid stroke='#f5f5f5' />
-              <XAxis dataKey='date' scale='band' />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type='monotone' dataKey='no2' stroke='#74A4BC' />
-              <Line type='monotone' dataKey='o3' stroke='#444B6E' />
-              <Line type='monotone' dataKey='so2' stroke='#9AB87A' />
-              <Line type='monotone' dataKey='pm10' stroke='#B81365' />
-            </ComposedChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <div className='air-pollution__form'>
+            <label htmlFor='hour'>Filter data by hour: </label>
+            <select className='air-pollution__form-select' name='hour' id='hour' defaultValue='12:00:00 PM' onChange={handleChange}>
+              <option value='12:00:00 AM'>00:00:00</option>
+              <option value='1:00:00 AM'>01:00:00</option>
+              <option value='2:00:00 AM'>02:00:00</option>
+              <option value='3:00:00 AM'>03:00:00</option>
+              <option value='4:00:00 AM'>04:00:00</option>
+              <option value='5:00:00 AM'>05:00:00</option>
+              <option value='6:00:00 AM'>06:00:00</option>
+              <option value='7:00:00 AM'>07:00:00</option>
+              <option value='8:00:00 AM'>08:00:00</option>
+              <option value='9:00:00 AM'>09:00:00</option>
+              <option value='10:00:00 AM'>10:00:00</option>
+              <option value='11:00:00 AM'>11:00:00</option>
+              <option value='12:00:00 PM'>12:00:00</option>
+              <option value='1:00:00 PM'>13:00:00</option>
+              <option value='2:00:00 PM'>14:00:00</option>
+              <option value='3:00:00 PM'>15:00:00</option>
+              <option value='4:00:00 PM'>16:00:00</option>
+              <option value='5:00:00 PM'>17:00:00</option>
+              <option value='6:00:00 PM'>18:00:00</option>
+              <option value='7:00:00 PM'>19:00:00</option>
+              <option value='8:00:00 PM'>20:00:00</option>
+              <option value='9:00:00 PM'>21:00:00</option>
+              <option value='10:00:00 PM'>22:00:00</option>
+              <option value='11:00:00 PM'>23:00:00</option>
+            </select>
+          </div>
+          <div className='air-pollution__graph'>
+            <div className='air-pollution__graph__container'>
+              <ResponsiveContainer width='100%' height='100%'>
+                <ComposedChart
+                  width={500}
+                  height={400}
+                  data={airPollutionData}
+                  margin={{
+                    top: 8,
+                    right: 8,
+                    bottom: 8,
+                    left: 8
+                  }}
+                >
+                  <CartesianGrid stroke='#f5f5f5' />
+                  <XAxis dataKey='date' scale='band' />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type='monotone' dataKey='no2' stroke='#74A4BC' />
+                  <Line type='monotone' dataKey='o3' stroke='#444B6E' />
+                  <Line type='monotone' dataKey='so2' stroke='#9AB87A' />
+                  <Line type='monotone' dataKey='pm10' stroke='#B81365' />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </>
+      )}
     </>
   )
 }
