@@ -1,0 +1,9 @@
+.precipitation-graph  {
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.precipitation-graph__container {
+  width: 2000px;
+  height: 350px;
+}

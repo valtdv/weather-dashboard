@@ -1,11 +1,11 @@
 .dashboard {
-  margin: 50px auto 0;
+  margin: 50px auto;
   max-width: 1000px;
 }
 
 .dashboard__container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 50px;
 }
 
