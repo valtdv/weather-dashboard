@@ -46,9 +46,9 @@ const CurrentWeatherTable = ({ location, setUserLocation }) => {
                 <tr>
                   <th className='current-weather__table-title'>Weather</th>
                   <th className='current-weather__table-title'>Description</th>
-                  <th className='current-weather__table-title'>Temperature °C</th>
-                  <th className='current-weather__table-title'>Pressure</th>
-                  <th className='current-weather__table-title'>Humidity %</th>
+                  <th className='current-weather__table-title'>Temperature (°C)</th>
+                  <th className='current-weather__table-title'>Pressure (hPa)</th>
+                  <th className='current-weather__table-title'>Humidity (%)</th>
                 </tr>
               </thead>
               <tbody className='current-weather__table-body'>
