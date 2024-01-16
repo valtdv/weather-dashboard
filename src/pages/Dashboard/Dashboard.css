@@ -6,6 +6,11 @@
 .dashboard__container {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "welcome current-weather"
+    "air-pollution air-pollution"
+    "precipitation precipitation";
   gap: 50px;
 }
 
@@ -18,11 +23,29 @@
   font-size: 22px;
 }
 
+.welcome-item {
+  grid-area: welcome;
+}
+.current-weather-item {
+  grid-area: current-weather;
+}
+.air-pollution-item {
+  grid-area: air-pollution;
+}
+.precipitation-item {
+  grid-area: precipitation;
+}
+
 @media (max-width: 1024px) {
   .dashboard {
     margin: 30px 20px;
   }
   .dashboard__container {
     grid-template-columns: 1fr;
+    grid-template-areas: 
+    "welcome welcome"
+    "current-weather current-weather"
+    "air-pollution air-pollution"
+    "precipitation precipitation";
   }
 }

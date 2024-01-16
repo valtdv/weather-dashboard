@@ -1,9 +1,23 @@
-.air-pollution-graph {
+.air-pollution__form {
+  margin-bottom: 1rem;
+}
+
+.air-pollution__form-select {
+  padding: 0.25rem;
+  width: 120px;
+  color: #f2e9e4;
+  text-align: center;
+  background: transparent;
+  border: 1px solid #f2e9e4;
+  border-radius: 4px;
+}
+
+.air-pollution__graph {
   width: 100%;
   overflow-y: scroll;
 }
 
-.air-pollution-graph__container {
-  width: 2000px;
-  height: 300px;
+.air-pollution__graph__container {
+  width: 3000px;
+  height: 350px;
 }

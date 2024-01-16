@@ -9,6 +9,7 @@ import CurrentWeatherTable from '../../components/CurrentWeatherTable'
 
 const Dashboard = () => {
   const navigate = useNavigate()
+
   const [loading, setLoading] = useState(true)
   const [isEnabled, setIsEnabled] = useState()
   const [location, setLocation] = useState({ lat: 0, long: 0 })
@@ -57,25 +58,33 @@ const Dashboard = () => {
         <div className='dashboard'>
           <h1 className='dashboard__main-title'>Climate Dashboard</h1>
           <div className='dashboard__container'>
-            <Card>
-              <h2 className='dashboard__title'>Welcome, User!</h2>
-              <p>We are showing climate information based on your location</p>
-              <p>
-                <strong>Today&apos;s date:</strong> {today}
-              </p>
-            </Card>
-            <Card>
-              <h2 className='dashboard__title'>Current weather</h2>
-              <CurrentWeatherTable location={location} />
-            </Card>
-            <Card>
-              <h2 className='dashboard__title'>Air pollution in the last 3 months</h2>
-              <AirPollutionGraph location={location} />
-            </Card>
-            <Card>
-              <h2 className='dashboard__title'>Precipitation probability and temperature for the next 5 days</h2>
-              <PrecipitationGraph location={location} />
-            </Card>
+            <div className='welcome-item'>
+              <Card>
+                <h2 className='dashboard__title'>Welcome, User!</h2>
+                <p>We are showing climate information based on your location</p>
+                <p>
+                  <strong>Today&apos;s date:</strong> {today}
+                </p>
+              </Card>
+            </div>
+            <div className='current-weather-item'>
+              <Card className='current-weather-item'>
+                <h2 className='dashboard__title'>Current weather</h2>
+                <CurrentWeatherTable location={location} />
+              </Card>
+            </div>
+            <div className='air-pollution-item'>
+              <Card className='air-pollution-item'>
+                <h2 className='dashboard__title'>Air pollution in the last 3 months</h2>
+                <AirPollutionGraph location={location} />
+              </Card>
+            </div>
+            <div className='precipitation-item'>
+              <Card>
+                <h2 className='dashboard__title'>Precipitation probability and temperature for the next 5 days</h2>
+                <PrecipitationGraph location={location} />
+              </Card>
+            </div>
           </div>
         </div>
       )}
