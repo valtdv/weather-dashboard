@@ -71,6 +71,6 @@ const PrecipitationGraph = ({ location }) => {
   )
 }
 
-PrecipitationGraph.propTypes = { location: PropTypes.isRequired }
+PrecipitationGraph.propTypes = { location: PropTypes.object.isRequired }
 
 export default PrecipitationGraph

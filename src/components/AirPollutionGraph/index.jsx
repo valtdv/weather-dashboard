@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useAxios from '../../hooks/useAxios'
 import PropTypes from 'prop-types'
-import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import './AirPollutionGraph.css'
 
 const AirPollutionGraph = ({ location }) => {
@@ -28,7 +28,7 @@ const AirPollutionGraph = ({ location }) => {
     return <p>There has been an error fetching the Open Weather API</p>
   }
 
-  //Given the large amount of data the user has the posibility of filtering air pollution by hour
+  //Given the largeount of data the user has the posibility of filtering air pollution by hour
   const getFilteredData = (time) => {
     const newObj = airPollutionRoughData.filter((el) => el.dateWithHour.includes(time))
 
@@ -47,8 +47,13 @@ const AirPollutionGraph = ({ location }) => {
 
       let newObj = list.map((el) => {
         return {
+          //Date without hour to show on X axis
           date: new Date(el.dt * 1000).toDateString(),
-          dateWithHour: new Date(el.dt * 1000).toLocaleString(),
+          /*
+          Date with hour to filter data. toString() function is used instead of toLocaleString() function to standarize
+          between browsers
+          */
+          dateWithHour: new Date(el.dt * 1000).toString(),
           ...el.components
         }
       })
@@ -60,7 +65,7 @@ const AirPollutionGraph = ({ location }) => {
   //Once the rough data is obtained the final data is filtered initially by noon
   useEffect(() => {
     if (airPollutionRoughData !== undefined) {
-      getFilteredData('12:00:00 PM')
+      getFilteredData('12:00:00')
     }
   }, [airPollutionRoughData])
 
@@ -72,37 +77,37 @@ const AirPollutionGraph = ({ location }) => {
         <>
           <div className='air-pollution__form'>
             <label htmlFor='hour'>Filter data by hour: </label>
-            <select className='air-pollution__form-select' name='hour' id='hour' defaultValue='12:00:00 PM' onChange={handleChange}>
-              <option value='12:00:00 AM'>00:00:00</option>
-              <option value='1:00:00 AM'>01:00:00</option>
-              <option value='2:00:00 AM'>02:00:00</option>
-              <option value='3:00:00 AM'>03:00:00</option>
-              <option value='4:00:00 AM'>04:00:00</option>
-              <option value='5:00:00 AM'>05:00:00</option>
-              <option value='6:00:00 AM'>06:00:00</option>
-              <option value='7:00:00 AM'>07:00:00</option>
-              <option value='8:00:00 AM'>08:00:00</option>
-              <option value='9:00:00 AM'>09:00:00</option>
-              <option value='10:00:00 AM'>10:00:00</option>
-              <option value='11:00:00 AM'>11:00:00</option>
-              <option value='12:00:00 PM'>12:00:00</option>
-              <option value='1:00:00 PM'>13:00:00</option>
-              <option value='2:00:00 PM'>14:00:00</option>
-              <option value='3:00:00 PM'>15:00:00</option>
-              <option value='4:00:00 PM'>16:00:00</option>
-              <option value='5:00:00 PM'>17:00:00</option>
-              <option value='6:00:00 PM'>18:00:00</option>
-              <option value='7:00:00 PM'>19:00:00</option>
-              <option value='8:00:00 PM'>20:00:00</option>
-              <option value='9:00:00 PM'>21:00:00</option>
-              <option value='10:00:00 PM'>22:00:00</option>
-              <option value='11:00:00 PM'>23:00:00</option>
+            <select className='air-pollution__form-select' name='hour' id='hour' defaultValue='12:00:00' onChange={handleChange}>
+              <option value='00:00:00'>00:00:00</option>
+              <option value='1:00:00'>01:00:00</option>
+              <option value='2:00:00'>02:00:00</option>
+              <option value='3:00:00'>03:00:00</option>
+              <option value='4:00:00'>04:00:00</option>
+              <option value='5:00:00'>05:00:00</option>
+              <option value='6:00:00'>06:00:00</option>
+              <option value='7:00:00'>07:00:00</option>
+              <option value='8:00:00'>08:00:00</option>
+              <option value='9:00:00'>09:00:00</option>
+              <option value='10:00:00'>10:00:00</option>
+              <option value='11:00:00'>11:00:00</option>
+              <option value='12:00:00'>12:00:00</option>
+              <option value='13:00:00'>13:00:00</option>
+              <option value='14:00:00'>14:00:00</option>
+              <option value='15:00:00'>15:00:00</option>
+              <option value='16:00:00'>16:00:00</option>
+              <option value='17:00:00'>17:00:00</option>
+              <option value='18:00:00'>18:00:00</option>
+              <option value='19:00:00'>19:00:00</option>
+              <option value='29:00:00'>20:00:00</option>
+              <option value='21:00:00'>21:00:00</option>
+              <option value='22:00:00'>22:00:00</option>
+              <option value='23:00:00'>23:00:00</option>
             </select>
           </div>
           <div className='air-pollution__graph'>
             <div className='air-pollution__graph__container'>
               <ResponsiveContainer width='100%' height='100%'>
-                <ComposedChart
+                <LineChart
                   width={500}
                   height={400}
                   data={airPollutionData}
@@ -122,7 +127,7 @@ const AirPollutionGraph = ({ location }) => {
                   <Line type='monotone' dataKey='o3' stroke='#444B6E' />
                   <Line type='monotone' dataKey='so2' stroke='#9AB87A' />
                   <Line type='monotone' dataKey='pm10' stroke='#B81365' />
-                </ComposedChart>
+                </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
@@ -132,6 +137,6 @@ const AirPollutionGraph = ({ location }) => {
   )
 }
 
-AirPollutionGraph.propTypes = { location: PropTypes.isRequired }
+AirPollutionGraph.propTypes = { location: PropTypes.object.isRequired }
 
 export default AirPollutionGraph

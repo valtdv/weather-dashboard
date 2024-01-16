@@ -65,6 +65,6 @@ const CurrentWeatherTable = ({ location }) => {
   )
 }
 
-CurrentWeatherTable.propTypes = { location: PropTypes.isRequired }
+CurrentWeatherTable.propTypes = { location: PropTypes.object.isRequired }
 
 export default CurrentWeatherTable
