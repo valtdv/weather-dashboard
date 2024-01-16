@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './CurrentWeatherTable.css'
 import useAxios from '../../hooks/useAxios'
 
-const CurrentWeatherTable = ({ location }) => {
+const CurrentWeatherTable = ({ location, setUserLocation }) => {
   const baseUrl = `weather?lat=${location.lat}&lon=${location.long}&units=metric&appid=`
 
   const [weatherData, setWeatherData] = useState({})
@@ -18,6 +18,9 @@ const CurrentWeatherTable = ({ location }) => {
   //Once the response has stopped loading data is processed and set
   useEffect(() => {
     if (!loading) {
+      const userLocation = `${data.name}, ${data.sys.country}`
+      setUserLocation(userLocation)
+
       const newObj = {
         weather: data.weather[0].main,
         description: data.weather[0].description,
@@ -65,6 +68,6 @@ const CurrentWeatherTable = ({ location }) => {
   )
 }
 
-CurrentWeatherTable.propTypes = { location: PropTypes.object.isRequired }
+CurrentWeatherTable.propTypes = { location: PropTypes.object.isRequired, setUserLocation: PropTypes.func.isRequired }
 
 export default CurrentWeatherTable

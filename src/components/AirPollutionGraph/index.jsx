@@ -79,15 +79,15 @@ const AirPollutionGraph = ({ location }) => {
             <label htmlFor='hour'>Filter data by hour: </label>
             <select className='air-pollution__form-select' name='hour' id='hour' defaultValue='12:00:00' onChange={handleChange}>
               <option value='00:00:00'>00:00:00</option>
-              <option value='1:00:00'>01:00:00</option>
-              <option value='2:00:00'>02:00:00</option>
-              <option value='3:00:00'>03:00:00</option>
-              <option value='4:00:00'>04:00:00</option>
-              <option value='5:00:00'>05:00:00</option>
-              <option value='6:00:00'>06:00:00</option>
-              <option value='7:00:00'>07:00:00</option>
-              <option value='8:00:00'>08:00:00</option>
-              <option value='9:00:00'>09:00:00</option>
+              <option value='01:00:00'>01:00:00</option>
+              <option value='02:00:00'>02:00:00</option>
+              <option value='03:00:00'>03:00:00</option>
+              <option value='04:00:00'>04:00:00</option>
+              <option value='05:00:00'>05:00:00</option>
+              <option value='06:00:00'>06:00:00</option>
+              <option value='07:00:00'>07:00:00</option>
+              <option value='08:00:00'>08:00:00</option>
+              <option value='09:00:00'>09:00:00</option>
               <option value='10:00:00'>10:00:00</option>
               <option value='11:00:00'>11:00:00</option>
               <option value='12:00:00'>12:00:00</option>

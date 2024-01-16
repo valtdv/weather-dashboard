@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true)
   const [isEnabled, setIsEnabled] = useState()
   const [location, setLocation] = useState({ lat: 0, long: 0 })
+  const [userLocation, setUserLocation] = useState('')
 
   //Get today's date and format it to show the user
   const date = new Date()
@@ -66,12 +67,13 @@ const Dashboard = () => {
                 <p>
                   <strong>Today&apos;s date:</strong> {today}
                 </p>
+                <p>📍 {userLocation}</p>
               </Card>
             </div>
             <div className='current-weather-item'>
               <Card className='current-weather-item'>
                 <h2 className='dashboard__title'>Current weather</h2>
-                <CurrentWeatherTable location={location} />
+                <CurrentWeatherTable location={location} setUserLocation={setUserLocation} />
               </Card>
             </div>
             <div className='air-pollution-item'>
