@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+const API_URL = process.env.REACT_APP_WEATHER_API_URL
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
+
 const useAxios = (url) => {
   const [data, setData] = useState(null)
   const [error, setError] = useState('')
@@ -8,7 +11,7 @@ const useAxios = (url) => {
 
   const getData = () => {
     axios
-      .get(url)
+      .get(`${API_URL}${url}${API_KEY}`)
       .then((res) => {
         setData(res.data)
       })

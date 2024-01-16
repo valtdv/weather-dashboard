@@ -16,7 +16,7 @@ const AirPollutionGraph = ({ location }) => {
 
   const threeMonthsAgo = (date / 1000) | 0
 
-  const baseUrl = `https://api.openweathermap.org/data/2.5/air_pollution/history?lat=${location.lat}&lon=${location.long}&start=${threeMonthsAgo}&end=${today}&appid=aad3bf7d93300ce6275d92cf0ae5c7d9&exclude=hourly`
+  const baseUrl = `air_pollution/history?lat=${location.lat}&lon=${location.long}&start=${threeMonthsAgo}&end=${today}&appid=`
 
   const [airPollutionRoughData, setAirPollutionRoughData] = useState()
   const [airPollutionData, setAirPollutionData] = useState()

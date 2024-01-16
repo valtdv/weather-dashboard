@@ -4,7 +4,7 @@ import './CurrentWeatherTable.css'
 import useAxios from '../../hooks/useAxios'
 
 const CurrentWeatherTable = ({ location }) => {
-  const baseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.long}&appid=aad3bf7d93300ce6275d92cf0ae5c7d9&units=metric`
+  const baseUrl = `weather?lat=${location.lat}&lon=${location.long}&units=metric&appid=`
 
   const [weatherData, setWeatherData] = useState({})
 

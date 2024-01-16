@@ -5,7 +5,7 @@ import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import './PrecipitationGraph.css'
 
 const PrecipitationGraph = ({ location }) => {
-  const baseUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.long}&units=metric&appid=aad3bf7d93300ce6275d92cf0ae5c7d9`
+  const baseUrl = `forecast?lat=${location.lat}&lon=${location.long}&units=metric&appid=`
 
   const [precipitationData, setPrecipitationData] = useState({})
 
