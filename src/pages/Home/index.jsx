@@ -8,6 +8,7 @@ const Home = () => {
   const [title, setTitle] = useState('Welcome to Climate Dashboard!')
   const navigate = useNavigate()
 
+  //If geolocation is supported by user's browser geolocation permission alert is displayed
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(goToDashboard, showError)

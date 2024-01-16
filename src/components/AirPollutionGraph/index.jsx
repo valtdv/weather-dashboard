@@ -6,7 +6,7 @@ import './AirPollutionGraph.css'
 
 const AirPollutionGraph = ({ location }) => {
   /* 
-  Get the dates for today and three months ago.Dates for today and three months ago are set 
+  Get the dates for today and three months ago. Dates for today and three months ago are set 
   in unix timestamp given the API's requirements
   */
   const date = new Date()
@@ -28,15 +28,16 @@ const AirPollutionGraph = ({ location }) => {
     setAirPollutionData(newObj)
   }
 
+  //When the user onChange event is triggered by user selection on the dropdown, event to filter data is called
   const handleChange = (e) => {
     getFilteredData(e.target.value)
-    console.log(e.target.value)
   }
 
   useEffect(() => {
     axios.get(baseUrl).then((response) => {
       const data = response.data
       const list = data.list
+
       let newObj = list.map((el) => {
         return {
           date: new Date(el.dt * 1000).toDateString(),
@@ -49,6 +50,7 @@ const AirPollutionGraph = ({ location }) => {
     })
   }, [])
 
+  //Once the rough data is obtained the final data is filtered initially by noon
   useEffect(() => {
     if (airPollutionRoughData !== undefined) {
       getFilteredData('12:00:00 PM')

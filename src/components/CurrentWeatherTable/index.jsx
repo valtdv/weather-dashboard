@@ -16,6 +16,7 @@ const CurrentWeatherTable = ({ location }) => {
       const newObj = {
         weather: data.weather[0].main,
         description: data.weather[0].description,
+        // API returns value in celsius after passing query param 'units=metric'
         temperature: data.main.temp,
         pressure: data.main.pressure,
         humidity: data.main.humidity
