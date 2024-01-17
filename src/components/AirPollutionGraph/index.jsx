@@ -28,14 +28,14 @@ const AirPollutionGraph = ({ location }) => {
     return <p>There has been an error fetching the Open Weather API</p>
   }
 
-  //Given the largeount of data the user has the posibility of filtering air pollution by hour
+  //Given the large amount of data the user has the posibility of filtering air pollution by hour
   const getFilteredData = (time) => {
     const newObj = airPollutionRoughData.filter((el) => el.dateWithHour.includes(time))
 
     setAirPollutionData(newObj)
   }
 
-  //When the user onChange event is triggered by user selection on the dropdown, event to filter data is called
+  //When the onChange event is triggered by user selection on the dropdown, function to filter data is called
   const handleChange = (e) => {
     getFilteredData(e.target.value)
   }
@@ -98,7 +98,7 @@ const AirPollutionGraph = ({ location }) => {
               <option value='17:00:00'>17:00:00</option>
               <option value='18:00:00'>18:00:00</option>
               <option value='19:00:00'>19:00:00</option>
-              <option value='29:00:00'>20:00:00</option>
+              <option value='20:00:00'>20:00:00</option>
               <option value='21:00:00'>21:00:00</option>
               <option value='22:00:00'>22:00:00</option>
               <option value='23:00:00'>23:00:00</option>
