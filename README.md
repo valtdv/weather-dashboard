@@ -38,3 +38,20 @@ $ npm run start
 - Scroll horizontally on any table or chart to visualize it completly
 - Position your mouse over any point on the charts to get more details
 
+## Main tools and technologies used
+
+- Version control: [Git](https://git-scm.com)
+- Frontend framework: [React](https://git-scm.com)
+- Charting library: [Recharts](https://recharts.org/en-US)
+- API: [Open Weather](https://openweathermap.org/api)
+
+## Workflow
+
+This repo followed Git Flow branching strategies for branch name conventions. Three main pull requests were created on the timeline of this project, and direct pushes to the main were avoided with the exception of initial and final commits. Pull requests were squashed and merged to avoid unnecessary merge commits.
+
+### Pull requests
+
+- [Initial logic and mockups for app](https://github.com/valtdv/weather-dashboard/pull/1)
+- [API connection and display of information on dashboard](https://github.com/valtdv/weather-dashboard/pull/2)
+- [Documentation and implementation of good practices](https://github.com/valtdv/weather-dashboard/pull/3)
+
